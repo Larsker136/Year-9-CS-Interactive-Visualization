@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bit by Bit</title>
+<meta name="description" content="Interactive Year 9 Computer Science lessons: number systems, data representation, error checking, logic gates and computer architecture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400&family=Schibsted+Grotesk:wght@600;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-head" id="site-head">
+  <div class="bar">
+    <a class="brand" href="#start" data-go="start"><i aria-hidden="true"><b class="lit"></b><b></b><b></b><b class="lit"></b></i>Bit by Bit</a>
+    <nav class="tabs" aria-label="Topics">
+      <a href="#start" data-go="start">Start</a>
+      <a href="#numbers" data-go="numbers"><span class="n">1</span>Number Systems<span class="prog" data-progress="numbers"></span></a>
+      <a href="#data" data-go="data"><span class="n">2</span>Data Representation<span class="prog" data-progress="data"></span></a>
+      <a href="#errors" data-go="errors"><span class="n">3</span>Error Checking<span class="prog" data-progress="errors"></span></a>
+      <a href="#logic" data-go="logic"><span class="n">4</span>Logic Gates<span class="prog" data-progress="logic"></span></a>
+      <a href="#cpu" data-go="cpu"><span class="n">5</span>Computer Architecture<span class="prog" data-progress="cpu"></span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= START ======================= -->
+<section class="view" data-view="start">
+  <div class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Year 9 Computer Science</p>
+      <h1>Learn how a computer works by flipping the switches yourself.</h1>
+      <p class="lede">Every photo, song and program is stored as 1s and 0s. These five topics explain how, and each one gives you something to change so you can watch what happens.</p>
+      <a class="btn primary" href="#numbers" data-go="numbers">Start with Number Systems</a>
+    </div>
+    <div class="lab">
+      <div class="lab-head"><span class="tag">Try it now</span><h4>This is one byte. Click any bit.</h4></div>
+      <div class="lab-body">
+        <div class="bits" id="hero-board"></div>
+        <div class="readouts">
+          <div class="readout wide"><span class="label">Binary</span><span class="v" id="hero-bin"></span></div>
+          <div class="readout"><span class="label">Denary</span><span class="v" id="hero-den"></span></div>
+          <div class="readout"><span class="label">Hex</span><span class="v" id="hero-hex"></span></div>
+          <div class="readout"><span class="label">As a letter</span><span class="v" id="hero-chr"></span></div>
+        </div>
+        <p>The same eight bits can be read as a number, a hexadecimal code or a character. What they mean depends on how the computer is told to read them.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="how">
+    <h2>How each lesson works</h2>
+    <ol class="flow">
+      <li><em>STEP 1</em><b>Read</b><span>A short explanation of one idea, in plain language.</span></li>
+      <li><em>STEP 2</em><b>Try</b><span>A working model you control: switches, sliders and buttons.</span></li>
+      <li><em>STEP 3</em><b>Observe</b><span>Experiments that tell you what to change and what to look for.</span></li>
+      <li><em>STEP 4</em><b>Check</b><span>A challenge at the end of each topic. Get five right to complete it.</span></li>
+    </ol>
+  </div>
+
+  <div class="topic-list">
+    <h2>The five topics</h2>
+    <div class="topic-rows">
+      <a class="topic-row" href="#numbers" data-go="numbers">
+        <span class="num">1</span><h3>Number Systems</h3>
+        <p>Binary, denary and hexadecimal. Flip bits, convert between bases and mix a colour from hex codes.</p>
+        <span class="meta"><span class="prog" data-progress="numbers"></span><span class="go">Open</span></span>
+      </a>
+      <a class="topic-row" href="#data" data-go="data">
+        <span class="num">2</span><h3>Data Representation</h3>
+        <p>How text, images and sound become numbers. Change resolution, colour depth, sampling rate and bit depth, and see the file size move.</p>
+        <span class="meta"><span class="prog" data-progress="data"></span><span class="go">Open</span></span>
+      </a>
+      <a class="topic-row" href="#errors" data-go="errors">
+        <span class="num">3</span><h3>Error Checking</h3>
+        <p>Parity, checksums and check digits. Corrupt data on purpose and find out which errors get caught.</p>
+        <span class="meta"><span class="prog" data-progress="errors"></span><span class="go">Open</span></span>
+      </a>
+      <a class="topic-row" href="#logic" data-go="logic">
+        <span class="num">4</span><h3>Logic Gates</h3>
+        <p>AND, OR, NOT, NAND, NOR and XOR. Switch inputs on and off, fill in truth tables and trace a signal through a circuit.</p>
+        <span class="meta"><span class="prog" data-progress="logic"></span><span class="go">Open</span></span>
+      </a>
+      <a class="topic-row" href="#cpu" data-go="cpu">
+        <span class="num">5</span><h3>Computer Architecture</h3>
+        <p>The CPU, its registers and memory. Step through the fetch–decode–execute cycle one move at a time.</p>
+        <span class="meta"><span class="prog" data-progress="cpu"></span><span class="go">Open</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 1 NUMBER SYSTEMS ======================= -->
+<section class="view topic" data-view="numbers" hidden>
+  <div class="topic-head">
+    <p class="eyebrow">Topic 1 of 5</p>
+    <h2>Number Systems</h2>
+    <p class="lede">People count in tens. Computers count in twos. Programmers often write in sixteens. This topic shows why all three exist and how to move between them.</p>
+  </div>
+  <div class="topic-body">
+    <nav class="outline" aria-label="Lessons in this topic"></nav>
+    <div class="lessons">
+
+      <article class="lesson" data-short="Why binary?">
+        <header><p class="eyebrow"><b>1.1</b>Concept</p><h3>Why computers use binary</h3></header>
+        <div class="prose">
+          <p>A computer is built from billions of tiny switches called transistors. A switch can only be in one of two states: on or off. That gives a computer exactly two symbols to work with, which we write as <span class="term">1</span> (on) and <span class="term">0</span> (off). A number system with two symbols is called <span class="term">binary</span>, or base 2. A single binary digit is a <span class="term">bit</span>.</p>
+          <p>The system you use every day is <span class="term">denary</span>, or base 10. It has ten symbols, 0 to 9, and each column is worth ten times the one to its right: ones, tens, hundreds, thousands. In the number 365, the 3 means three hundreds, the 6 means six tens and the 5 means five ones.</p>
+          <p>Binary works the same way, except each column is worth <strong>two</strong> times the one to its right: 1, 2, 4, 8, 16, 32, 64, 128. To read a binary number, add up the place values of every column that holds a 1. Eight bits together make a <span class="term">byte</span>, and four bits make a <span class="term">nibble</span>.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Build a number from bits</h4></div>
+          <div class="lab-body">
+            <p>The small number above each switch is its place value. Click a switch to turn that bit on or off.</p>
+            <div class="bits" id="bits-board"></div>
+            <div class="work"><span class="label">Add the place values that are on</span><span id="bits-sum"></span></div>
+            <div class="readouts">
+              <div class="readout"><span class="label">Binary</span><span class="v" id="bits-bin"></span></div>
+              <div class="readout"><span class="label">Denary</span><span class="v" id="bits-den"></span></div>
+              <div class="readout"><span class="label">Hexadecimal</span><span class="v" id="bits-hex"></span></div>
+            </div>
+            <div class="row">
+              <button class="btn small" type="button" data-bits-act="minus">Subtract 1</button>
+              <button class="btn small" type="button" data-bits-act="plus">Add 1</button>
+              <button class="btn small" type="button" data-bits-act="clear">All off</button>
+              <button class="btn small" type="button" data-bits-act="fill">All on</button>
+            </div>
+            <div class="msg warn" id="bits-note" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Turn every bit on. What is the largest number one byte can hold?</li>
+            <li>Turn all bits off, then press <strong>Add 1</strong> several times. Watch which bit flips every time and which flips least often.</li>
+            <li>Make 255, then press <strong>Add 1</strong> once more. What happens, and why?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>With all eight bits on you get 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = 255. Counting 0 as well, one byte can store 256 different values.</p>
+            <p>When counting up, the right-hand bit (worth 1) flips every step and the left-hand bit (worth 128) flips only once. The right-hand bit is called the least significant bit and the left-hand bit is the most significant bit.</p>
+            <p>256 would need a ninth bit. With only eight bits available the value wraps round to 0. This is called overflow.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Denary to binary">
+        <header><p class="eyebrow"><b>1.2</b>Explanation</p><h3>Converting denary to binary</h3></header>
+        <div class="prose">
+          <p>There are two reliable methods. Both give the same answer, so use whichever you find easier and keep the other for checking.</p>
+          <p><strong>Subtract place values.</strong> Write out the place values 128, 64, 32, 16, 8, 4, 2, 1. Start at the left. If the place value fits into what you have left, write a 1 and subtract it. If it does not fit, write a 0 and move on.</p>
+          <p><strong>Divide by 2.</strong> Keep dividing the number by 2 and write down the remainder each time (it will always be 0 or 1). Stop when you reach 0. The remainders, read from the last one to the first, are the binary number.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Watch the working, step by step</h4></div>
+          <div class="lab-body">
+            <div class="split">
+              <div class="field"><label for="d2b-n">Denary number (0 to 255)</label><input type="number" id="d2b-n" min="0" max="255" value="165" inputmode="numeric"><input type="range" id="d2b-range" min="0" max="255" value="165" aria-label="Denary number slider"></div>
+              <div class="field"><span class="label">Method</span><div class="seg" id="d2b-method" role="group" aria-label="Conversion method"><button type="button" data-v="place" aria-pressed="true">Subtract place values</button><button type="button" data-v="divide" aria-pressed="false">Divide by 2</button></div></div>
+            </div>
+            <div id="d2b-out" class="pair"></div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Drag the slider slowly from 0 to 16. Which numbers have exactly one bit switched on?</li>
+            <li>Try an even number, then the odd number after it. Which single bit tells you whether a number is odd?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>1, 2, 4, 8 and 16 each use a single bit. They are the powers of 2, which is why they are the place values.</p>
+            <p>The right-hand bit is worth 1. Every other place value is even, so a number is odd exactly when that last bit is 1.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Hexadecimal">
+        <header><p class="eyebrow"><b>1.3</b>Concept</p><h3>Hexadecimal: binary in shorthand</h3></header>
+        <div class="prose">
+          <p>Long strings of 1s and 0s are hard for people to read and easy to copy wrongly. <span class="term">Hexadecimal</span>, or base 16, solves this. It has sixteen symbols: 0 to 9, then A, B, C, D, E and F for the values 10 to 15.</p>
+          <p>Sixteen is 2 × 2 × 2 × 2, so <strong>one hex digit stands for exactly four bits</strong>. A byte splits into two nibbles, and each nibble becomes one hex digit. The byte <code>1010 0101</code> becomes <code>A5</code>. Nothing about the data changes. Hex is only a shorter way for humans to write the same bits.</p>
+          <p>You will meet hex in colour codes on web pages (<code>#FF8800</code>), in the MAC address that identifies a network device (<code>3C:5A:B4:01:9F:E2</code>), in memory addresses and in error codes.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>One nibble, one hex digit</h4></div>
+          <div class="lab-body">
+            <div class="nibbles">
+              <div class="nibble"><div class="bits" id="hex-hi"></div><div class="bigdigit" id="hex-hi-d"></div></div>
+              <div class="nibble"><div class="bits" id="hex-lo"></div><div class="bigdigit" id="hex-lo-d"></div></div>
+            </div>
+            <div class="work" id="hex-work"></div>
+            <div class="field"><span class="label">All sixteen hex digits</span><div class="hexgrid" id="hex-table"></div></div>
+          </div>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Hex in real use: screen colours</h4></div>
+          <div class="lab-body">
+            <p>A screen colour is three bytes: one each for red, green and blue light. Each byte is written as two hex digits, giving a six-digit colour code.</p>
+            <div class="split">
+              <div class="pair">
+                <div class="field"><label for="col-r">Red</label><input type="range" id="col-r" min="0" max="255" value="255"></div>
+                <div class="field"><label for="col-g">Green</label><input type="range" id="col-g" min="0" max="255" value="136"></div>
+                <div class="field"><label for="col-b">Blue</label><input type="range" id="col-b" min="0" max="255" value="0"></div>
+              </div>
+              <div class="pair">
+                <div class="swatch" id="col-swatch" role="img" aria-label="Colour preview"></div>
+                <div class="readout" style="border:1px solid var(--line);border-radius:12px"><span class="label">Colour code</span><span class="v" id="col-code"></span></div>
+              </div>
+            </div>
+            <div class="scroll-x"><table class="t"><thead><tr><th class="l">Channel</th><th>Denary</th><th>Binary</th><th>Hex</th></tr></thead><tbody id="col-rows"></tbody></table></div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>In the nibble lab, turn on all four bits of one nibble. Which hex digit do you get, and what is it worth in denary?</li>
+            <li>In the colour lab, make pure white and pure black. What are their colour codes?</li>
+            <li>Make the colour <code>#00FFFF</code>. Which two colours of light are mixed?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>Four bits on gives 8 + 4 + 2 + 1 = 15, which is F, the largest hex digit.</p>
+            <p>White is every channel at full strength, <code>#FFFFFF</code>. Black is every channel off, <code>#000000</code>.</p>
+            <p><code>#00FFFF</code> has no red, full green and full blue. Green and blue light together make cyan.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Converting all three">
+        <header><p class="eyebrow"><b>1.4</b>Explanation</p><h3>Converting between all three</h3></header>
+        <div class="prose">
+          <p><strong>Binary to hex:</strong> split the binary number into groups of four bits, starting from the right. Turn each group into one hex digit.</p>
+          <p><strong>Hex to binary:</strong> do the reverse. Replace each hex digit with its four-bit pattern.</p>
+          <p><strong>Hex to denary:</strong> the place values in hex are 1, 16, 256 and so on. For a two-digit hex number, multiply the left digit by 16 and add the right digit. <code>2F</code> is 2 × 16 + 15 = 47.</p>
+          <p><strong>Denary to hex:</strong> divide by 16. The whole-number answer is the left digit and the remainder is the right digit. 47 ÷ 16 = 2 remainder 15, so the answer is <code>2F</code>. If you find that hard, go through binary: denary to binary, then binary to hex.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Three-way converter</h4></div>
+          <div class="lab-body">
+            <p>Type in any one box. The other two update, and the working appears underneath. Values up to 65535 (16 bits) are accepted.</p>
+            <div class="split" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+              <div class="field"><label for="cv-bin">Binary</label><input type="text" id="cv-bin" value="00101111" autocomplete="off" spellcheck="false"></div>
+              <div class="field"><label for="cv-den">Denary</label><input type="text" id="cv-den" value="47" autocomplete="off" inputmode="numeric"></div>
+              <div class="field"><label for="cv-hex">Hexadecimal</label><input type="text" id="cv-hex" value="2F" autocomplete="off" spellcheck="false"></div>
+            </div>
+            <div class="work" id="cv-work" aria-live="polite"></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Challenge">
+        <header><p class="eyebrow"><b>1.5</b>Challenge</p><h3>Convert without the tools</h3></header>
+        <div class="prose"><p>Work these out on paper first, then type your answer. You get two attempts at each question, and the working is shown afterwards.</p></div>
+        <div class="lab challenge">
+          <div class="lab-head"><span class="tag">Challenge</span><h4>Number conversions</h4></div>
+          <div class="lab-body"><div class="quiz" id="quiz-numbers"></div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <div class="topic-foot"><a class="btn" href="#start" data-go="start">Back to start</a><a class="btn primary" href="#data" data-go="data">Next: Data Representation</a></div>
+</section>
+
+<!-- ======================= 2 DATA REPRESENTATION ======================= -->
+<section class="view topic" data-view="data" hidden>
+  <div class="topic-head">
+    <p class="eyebrow">Topic 2 of 5</p>
+    <h2>Data Representation</h2>
+    <p class="lede">A computer can only store numbers, and those numbers are in binary. Text, pictures and sound all have to be turned into numbers before a computer can keep them.</p>
+  </div>
+  <div class="topic-body">
+    <nav class="outline" aria-label="Lessons in this topic"></nav>
+    <div class="lessons">
+
+      <article class="lesson" data-short="Everything is a number">
+        <header><p class="eyebrow"><b>2.1</b>Concept</p><h3>Everything is a number</h3></header>
+        <div class="prose">
+          <p>To store something, a computer needs a rule that turns it into numbers and back again. For text the rule is a <span class="term">character set</span>: a table that gives every character its own number. In the ASCII character set, capital A is 65, capital B is 66 and a space is 32. Each ASCII character fits in one byte.</p>
+          <p>The more there is to store, the more bits are needed. Storage is measured in these units:</p>
+          <ul>
+            <li>8 bits = 1 byte</li>
+            <li>1024 bytes = 1 kibibyte (KiB)</li>
+            <li>1024 KiB = 1 mebibyte (MiB)</li>
+            <li>1024 MiB = 1 gibibyte (GiB)</li>
+          </ul>
+          <p>In everyday speech people often say kilobyte and megabyte for these sizes. To turn bits into bytes, divide by 8. To turn bytes into KiB, divide by 1024.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Text as binary</h4></div>
+          <div class="lab-body">
+            <div class="field" style="max-width:320px"><label for="txt-in">Type up to 12 characters</label><input type="text" id="txt-in" maxlength="12" value="Year 9" autocomplete="off"></div>
+            <div class="chars" id="txt-out"></div>
+            <div class="work" id="txt-total"></div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Type <code>A</code> and then <code>a</code>. How far apart are their codes, and which single bit is different?</li>
+            <li>Type the digit <code>7</code>. Is its code the number 7?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>A is 65 and a is 97. They are 32 apart, so only the bit worth 32 changes. Every capital and lower-case pair works this way.</p>
+            <p>The character 7 has the code 55. A digit typed as text is stored as a character code, which is different from storing the number 7.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Images: pixels">
+        <header><p class="eyebrow"><b>2.2</b>Concept</p><h3>Images are grids of pixels</h3></header>
+        <div class="prose">
+          <p>A digital image is made of tiny squares called <span class="term">pixels</span>. Each pixel is a single colour, and that colour is stored as a binary number. The computer keeps the pixels in order, row by row, so the picture is really one long list of numbers.</p>
+          <p>The number of bits used for each pixel is the <span class="term">colour depth</span>. With 1 bit a pixel can only be one of 2 colours. With 2 bits there are 4 possible codes (00, 01, 10, 11), so 4 colours. Every extra bit doubles the number of colours: <strong>number of colours = 2<sup>colour depth</sup></strong>.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Paint an 8 × 8 bitmap</h4></div>
+          <div class="lab-body">
+            <div class="field"><span class="label">Colour depth</span><div class="seg" id="px-depth" role="group" aria-label="Colour depth"><button type="button" data-v="1" aria-pressed="true">1 bit</button><button type="button" data-v="2" aria-pressed="false">2 bits</button><button type="button" data-v="3" aria-pressed="false">3 bits</button></div></div>
+            <div class="field"><span class="label plain">Pick a colour, then click or drag on the grid</span><div class="palette" id="px-palette"></div></div>
+            <div class="split">
+              <div class="pair">
+                <div class="px-grid" id="px-grid" aria-label="Pixel grid"></div>
+                <div class="row"><button class="btn small" type="button" id="px-clear">Clear</button><button class="btn small" type="button" id="px-example">Load the example</button></div>
+              </div>
+              <div class="pair">
+                <div class="field"><span class="label">What the computer stores</span><pre class="data" id="px-data"></pre></div>
+                <div class="work" id="px-size"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Paint one pixel and find the code that changed in the stored data.</li>
+            <li>Switch from 1 bit to 2 bits, then 3 bits. The grid is still 8 × 8. What happens to the file size each time?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>The image is 64 pixels in every case. At 1 bit per pixel it needs 64 bits (8 bytes). At 2 bits it needs 128 bits, and at 3 bits it needs 192 bits. More colours cost more storage even though the picture is the same size.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Resolution and depth">
+        <header><p class="eyebrow"><b>2.3</b>Explanation</p><h3>Resolution, colour depth and file size</h3></header>
+        <div class="prose">
+          <p><span class="term">Resolution</span> is the number of pixels in an image, given as width × height. More pixels means finer detail, because each pixel covers a smaller part of the picture. Too few pixels and you can see the squares. The image looks blocky, or <em>pixelated</em>.</p>
+          <p>Colour depth controls how accurate each pixel's colour is. Photographs normally use 24 bits per pixel, which gives over 16 million colours. With a low colour depth, smooth shading turns into flat bands because there are not enough colours to go round.</p>
+          <p>Both settings improve quality and both make the file bigger:</p>
+          <p class="expr">file size in bits = width × height × colour depth</p>
+          <p>Real image files also hold a little extra information called metadata, such as the width, height and colour depth, so the computer knows how to rebuild the picture.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Trade quality against file size</h4></div>
+          <div class="lab-body">
+            <div class="split">
+              <canvas class="img-canvas" id="img-canvas" width="512" height="512" role="img" aria-label="Sample picture of a sunset over water, drawn at the chosen resolution and colour depth"></canvas>
+              <div class="pair">
+                <div class="field"><label for="img-res">Resolution: <span class="mono" id="img-res-v"></span></label><input type="range" id="img-res" min="0" max="5" step="1" value="3"></div>
+                <div class="field"><label for="img-depth">Colour depth: <span class="mono" id="img-depth-v"></span></label><input type="range" id="img-depth" min="0" max="5" step="1" value="3"></div>
+                <div class="work" id="img-work"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Set the colour depth to 24 bits and drag the resolution down to 8 × 8. Can you still tell what the picture shows?</li>
+            <li>Set the resolution to 256 × 256 and lower the colour depth one step at a time. At which depth does the sky stop looking smooth?</li>
+            <li>Double the resolution from 64 × 64 to 128 × 128. Does the file size double?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>Doubling the width and the height gives four times as many pixels, so the file is four times bigger. Colour depth is gentler: going from 8 to 16 bits only doubles the size.</p>
+            <p>At low colour depth the smooth sunset breaks into bands, because nearby shades are all forced onto the same code.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Sound">
+        <header><p class="eyebrow"><b>2.4</b>Concept</p><h3>Sound is measured thousands of times a second</h3></header>
+        <div class="prose">
+          <p>Sound travels as a smooth, continuously changing wave. That kind of signal is called <span class="term">analogue</span>. A computer cannot store a smooth curve, so it measures the height of the wave at regular moments and stores each measurement as a binary number. Each measurement is a <span class="term">sample</span>.</p>
+          <p>The <span class="term">sampling rate</span> is the number of samples taken each second, measured in hertz (Hz). A higher rate catches quick changes in the wave that a lower rate would miss. Music on a CD uses 44,100 samples per second.</p>
+          <p>The <span class="term">bit depth</span> (also called sample resolution) is the number of bits used to store each sample. With 3 bits there are only 8 possible heights, so every measurement gets rounded to the nearest one. With 16 bits there are 65,536 heights and the rounding is too small to hear.</p>
+          <p class="expr">file size in bits = sampling rate × bit depth × seconds × channels</p>
+          <p>Mono sound has one channel. Stereo has two, one for each ear, so it takes twice the space.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Sample a sound wave</h4></div>
+          <div class="lab-body">
+            <canvas class="snd-canvas" id="snd-canvas" width="900" height="340" role="img" aria-label="Graph of the original sound wave with the stored samples drawn over it"></canvas>
+            <div class="legend"><span><i style="background:var(--ink-2)"></i>Original analogue wave (first 10 milliseconds)</span><span><i style="background:var(--on)"></i>What the computer stores and plays back</span></div>
+            <div class="split">
+              <div class="field"><label for="snd-rate">Sampling rate: <span class="mono" id="snd-rate-v"></span></label><input type="range" id="snd-rate" min="0" max="6" step="1" value="2"></div>
+              <div class="field"><label for="snd-depth">Bit depth: <span class="mono" id="snd-depth-v"></span></label><input type="range" id="snd-depth" min="0" max="6" step="1" value="2"></div>
+            </div>
+            <div class="field"><span class="label">The first samples, as stored</span><div class="chips" id="snd-samples"></div></div>
+            <div class="row"><button class="btn" type="button" id="snd-play-orig">Play the original</button><button class="btn primary" type="button" id="snd-play">Play the sampled version</button><span class="hint" id="snd-msg"></span></div>
+            <div class="split">
+              <div class="field"><label for="snd-dur">Length of recording: <span class="mono" id="snd-dur-v"></span></label><input type="range" id="snd-dur" min="1" max="300" step="1" value="60"></div>
+              <div class="field"><span class="label">Channels</span><div class="seg" id="snd-ch" role="group" aria-label="Channels"><button type="button" data-v="1" aria-pressed="true">Mono</button><button type="button" data-v="2" aria-pressed="false">Stereo</button></div></div>
+            </div>
+            <div class="work" id="snd-work"></div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Set the bit depth to 16 and the sampling rate to 500 Hz. Does the stored shape follow the original wave? Listen to it.</li>
+            <li>Now set the sampling rate to 44,100 Hz and the bit depth to 2. What has gone wrong this time?</li>
+            <li>Find the lowest settings where you cannot hear a difference from the original. How big is a one-minute recording at those settings?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>At a low sampling rate the samples are too far apart, so the fast wiggles in the wave are lost and the sound becomes dull or wrong in pitch.</p>
+            <p>At a low bit depth the timing is fine but every sample is rounded to one of a few heights. The wave becomes a staircase and you hear a harsh buzz.</p>
+            <p>Good quality needs both settings to be high enough, and each one multiplies the file size.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Challenge">
+        <header><p class="eyebrow"><b>2.5</b>Challenge</p><h3>Calculate the file size</h3></header>
+        <div class="prose"><p>Use the two formulas from this topic. A calculator is fine. Check whether the question wants bits or bytes before you answer.</p></div>
+        <div class="lab challenge">
+          <div class="lab-head"><span class="tag">Challenge</span><h4>Images and sound</h4></div>
+          <div class="lab-body"><div class="quiz" id="quiz-data"></div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <div class="topic-foot"><a class="btn" href="#numbers" data-go="numbers">Back: Number Systems</a><a class="btn primary" href="#errors" data-go="errors">Next: Error Checking</a></div>
+</section>
+
+<!-- ======================= 3 ERROR CHECKING ======================= -->
+<section class="view topic" data-view="errors" hidden>
+  <div class="topic-head">
+    <p class="eyebrow">Topic 3 of 5</p>
+    <h2>Error Checking</h2>
+    <p class="lede">Data gets damaged on its way between computers. The receiver cannot see what the sender meant, so the sender adds a little extra information that lets the receiver test whether the data arrived intact.</p>
+  </div>
+  <div class="topic-body">
+    <nav class="outline" aria-label="Lessons in this topic"></nav>
+    <div class="lessons">
+
+      <article class="lesson" data-short="How errors happen">
+        <header><p class="eyebrow"><b>3.1</b>Concept</p><h3>How errors happen</h3></header>
+        <div class="prose">
+          <p>Data travels as electrical pulses in a cable, flashes of light in a fibre or radio waves through the air. Along the way the signal can be disturbed by <span class="term">interference</span>: other electrical equipment, a weak Wi-Fi signal, a damaged cable. When the disturbance is strong enough, a 1 is read as a 0 or a 0 is read as a 1. One flipped bit is enough to turn one letter into another.</p>
+          <p>The receiver has a problem. Damaged data looks just as valid as good data. To find errors, the sender and receiver have to agree on a check in advance.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Send a message through a noisy cable</h4></div>
+          <div class="lab-body">
+            <div class="split">
+              <div class="field"><label for="nz-in">Message (up to 8 characters)</label><input type="text" id="nz-in" maxlength="8" value="HELLO" autocomplete="off"></div>
+              <div class="field"><label for="nz-level">Interference: <span class="mono" id="nz-level-v"></span></label><input type="range" id="nz-level" min="0" max="20" step="1" value="4"></div>
+            </div>
+            <div class="row"><button class="btn primary" type="button" id="nz-send">Send the message</button></div>
+            <div id="nz-out" class="pair" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Send the same message several times at 4% interference. Does it get damaged in the same place every time?</li>
+            <li>Find a send where exactly one bit flipped. How different is the received letter from the one that was sent?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>Errors are random, so each send is damaged differently and some arrive perfect. This is why sending the data again is a good fix once an error has been noticed.</p>
+            <p>One flipped bit changes the character code by 1, 2, 4, 8, 16, 32 or 64, which gives a completely different character.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Parity check">
+        <header><p class="eyebrow"><b>3.2</b>Explanation</p><h3>Parity check</h3></header>
+        <div class="prose">
+          <p>A parity check adds one extra bit, the <span class="term">parity bit</span>, to every byte. Seven bits carry the data and the eighth is set so that the total number of 1s follows a rule the two computers agreed on.</p>
+          <ul>
+            <li><strong>Even parity:</strong> the byte must contain an even number of 1s.</li>
+            <li><strong>Odd parity:</strong> the byte must contain an odd number of 1s.</li>
+          </ul>
+          <p>The sender counts the 1s in the data and sets the parity bit to make the total fit the rule. The receiver counts the 1s in the byte that arrives. If the count breaks the rule, a bit must have flipped on the way, and the receiver asks for the byte again.</p>
+          <p>Parity has two limits. It cannot tell you <em>which</em> bit is wrong. And if two bits flip, the count goes back to fitting the rule, so the error is missed.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Set the parity bit, then damage the byte</h4></div>
+          <div class="lab-body">
+            <div class="field"><span class="label">Rule agreed by both computers</span><div class="seg" id="par-mode" role="group" aria-label="Parity rule"><button type="button" data-v="even" aria-pressed="true">Even parity</button><button type="button" data-v="odd" aria-pressed="false">Odd parity</button></div></div>
+            <div class="field"><span class="label plain">1. Sender: P is the parity bit and D are the data bits. Set P yourself.</span><div class="bits" id="par-send"></div></div>
+            <div class="msg" id="par-status" aria-live="polite"></div>
+            <div class="row"><button class="btn small" type="button" id="par-random">New random data</button></div>
+            <div class="field"><span class="label plain">2. In the cable: click a bit to flip it, as interference would.</span><div class="bits" id="par-recv"></div></div>
+            <div class="msg" id="par-verdict" aria-live="polite"></div>
+            <div class="row"><button class="btn small" type="button" id="par-clear">Remove the interference</button></div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Set the parity bit correctly, then flip one bit in the cable. Does the receiver notice?</li>
+            <li>Flip a second bit. What does the receiver decide now?</li>
+            <li>Try three flipped bits. Can you predict the result before you click?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>One flip changes the count of 1s from even to odd (or odd to even), so it is always detected. A second flip changes it back, so the damaged byte passes the check.</p>
+            <p>The pattern continues: an odd number of flipped bits is detected and an even number is missed.</p>
+          </div></details>
+        </div>
+        <div class="prose">
+          <p>A <span class="term">parity block</span> improves on this. The bytes are stacked in rows, each with its own parity bit, and one extra row called the <span class="term">parity byte</span> holds a parity bit for every column. A single flipped bit now breaks the rule in one row and in one column. Where they cross is the faulty bit, so the receiver can correct it without asking for the data again.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Find the flipped bit in a parity block</h4></div>
+          <div class="lab-body">
+            <p>This block was sent with even parity. One bit in the four data bytes was flipped on the way. Click the bit you think is wrong.</p>
+            <div class="scroll-x"><table class="block" id="blk-grid"></table></div>
+            <div class="row"><label class="toggle" style="font-weight:400"><input type="checkbox" id="blk-counts"> Show the number of 1s in each row and column</label><button class="btn small" type="button" id="blk-new">New block</button></div>
+            <div class="msg" id="blk-msg" aria-live="polite"></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Checksum">
+        <header><p class="eyebrow"><b>3.3</b>Explanation</p><h3>Checksum</h3></header>
+        <div class="prose">
+          <p>A <span class="term">checksum</span> checks a whole block of data at once. Before sending, the sender runs a calculation on all the bytes in the block and sends the answer along with the data. The receiver runs the same calculation on what arrived and compares its answer with the checksum that was sent. If the two differ, the block is damaged and the receiver asks for it again.</p>
+          <p>A simple checksum, used below, is to add up all the bytes and keep only the remainder after dividing by 256, so the result fits in one byte. Real networks use more complicated calculations that catch more kinds of error, but the idea is the same.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Send a block with a checksum</h4></div>
+          <div class="lab-body">
+            <div class="field"><span class="label plain">1. The sender's four bytes (0 to 255). They start as the codes for H, E, L and P.</span><div class="bytes" id="cs-send"></div></div>
+            <div class="work" id="cs-work"></div>
+            <div class="field"><span class="label plain">2. What the receiver gets. Change a value to damage it.</span><div class="bytes" id="cs-recv"></div></div>
+            <div class="row"><button class="btn small" type="button" id="cs-corrupt">Damage one byte at random</button><button class="btn small" type="button" id="cs-reset">Send again without damage</button></div>
+            <div class="work" id="cs-rwork"></div>
+            <div class="msg" id="cs-verdict" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Damage one byte. Does the receiver's total match the checksum?</li>
+            <li>Send again without damage. Now add 1 to one received byte and take 1 away from another. What does the receiver decide?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>Changing one byte changes the total, so it is detected. Two changes that cancel each other leave the total the same, and this simple checksum misses them. Stronger checksum calculations are designed so that this kind of cancelling is extremely unlikely.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Check digit">
+        <header><p class="eyebrow"><b>3.4</b>Explanation</p><h3>Check digit</h3></header>
+        <div class="prose">
+          <p>The first two methods catch errors made by cables and radio waves. A <span class="term">check digit</span> catches errors made by people and scanners when a number is <em>entered</em>: a mistyped digit, or two digits swapped round.</p>
+          <p>A check digit is one extra digit on the end of a code, calculated from all the other digits. You will find one on every barcode, on bank card numbers and on the ISBN printed on the back of a book. When the code is typed or scanned, the computer redoes the calculation. If the answer does not match the last digit, the code is rejected straight away.</p>
+          <p>For a 13-digit ISBN the calculation is: multiply the first twelve digits by 1, 3, 1, 3 and so on in turn. Add up the results. The check digit is the number you must add to reach the next multiple of 10.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Calculate and test an ISBN check digit</h4></div>
+          <div class="lab-body">
+            <div class="field" style="max-width:320px"><label class="plain" for="isbn-in">The first 12 digits of a book's ISBN</label><input type="text" id="isbn-in" maxlength="12" value="978030640615" inputmode="numeric" autocomplete="off"></div>
+            <div class="scroll-x"><table class="t isbn" id="isbn-table"></table></div>
+            <div class="work" id="isbn-work"></div>
+            <div class="field" style="max-width:420px"><label class="plain" for="isbn-check">Now test a full 13-digit code, as if someone had typed it in</label><input type="text" id="isbn-check" maxlength="13" inputmode="numeric" autocomplete="off"></div>
+            <div class="row"><button class="btn small" type="button" id="isbn-fix">Use the correct code</button><button class="btn small" type="button" id="isbn-typo">Mistype one digit</button><button class="btn small" type="button" id="isbn-swap">Swap two neighbouring digits</button></div>
+            <div class="msg" id="isbn-verdict" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="note">
+          <h4>Two more methods to know</h4>
+          <p><strong>Echo check:</strong> the receiver sends the data straight back and the sender compares it with the original. If the two differ, the data is sent again.</p>
+          <p><strong>Automatic repeat request (ARQ):</strong> the receiver replies with an acknowledgement when data passes its error check. If the sender gets no acknowledgement within a set time, it sends the data again automatically.</p>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Challenge">
+        <header><p class="eyebrow"><b>3.5</b>Challenge</p><h3>Catch the error</h3></header>
+        <div class="prose"><p>Count carefully. In the parity questions the parity bit is the left-hand bit of the byte.</p></div>
+        <div class="lab challenge">
+          <div class="lab-head"><span class="tag">Challenge</span><h4>Parity, checksums and check digits</h4></div>
+          <div class="lab-body"><div class="quiz" id="quiz-errors"></div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <div class="topic-foot"><a class="btn" href="#data" data-go="data">Back: Data Representation</a><a class="btn primary" href="#logic" data-go="logic">Next: Logic Gates</a></div>
+</section>
+
+<!-- ======================= 4 LOGIC GATES ======================= -->
+<section class="view topic" data-view="logic" hidden>
+  <div class="topic-head">
+    <p class="eyebrow">Topic 4 of 5</p>
+    <h2>Logic Gates</h2>
+    <p class="lede">Every decision a computer makes comes down to a handful of simple rules applied to 1s and 0s. Each rule is carried out by a small circuit called a logic gate.</p>
+  </div>
+  <div class="topic-body">
+    <nav class="outline" aria-label="Lessons in this topic"></nav>
+    <div class="lessons">
+
+      <article class="lesson" data-short="What is a gate?">
+        <header><p class="eyebrow"><b>4.1</b>Concept</p><h3>What a logic gate does</h3></header>
+        <div class="prose">
+          <p>A <span class="term">logic gate</span> is a tiny electronic circuit made from transistors. It takes one or two binary <span class="term">inputs</span> and produces one binary <span class="term">output</span>. The output depends only on the inputs and on the gate's rule. The same inputs always give the same output.</p>
+          <p>In a real circuit, 1 means a wire is carrying a voltage and 0 means it is not. You can also read 1 as true and 0 as false. That lets a gate answer questions like "are both of these true?" or "is at least one of these true?".</p>
+          <p>There are six gates to learn. Each has its own symbol, which is how it is drawn in a circuit diagram. Choose a gate below, read its rule, then switch the inputs to test it.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Gate explorer</h4></div>
+          <div class="lab-body">
+            <div class="seg" id="gate-seg" role="group" aria-label="Choose a gate">
+              <button type="button" data-v="AND" aria-pressed="true">AND</button><button type="button" data-v="OR" aria-pressed="false">OR</button><button type="button" data-v="NOT" aria-pressed="false">NOT</button><button type="button" data-v="NAND" aria-pressed="false">NAND</button><button type="button" data-v="NOR" aria-pressed="false">NOR</button><button type="button" data-v="XOR" aria-pressed="false">XOR</button>
+            </div>
+            <div class="gate-panel">
+              <div class="pair">
+                <div class="gate-info" id="gate-desc" aria-live="polite"></div>
+                <svg class="cir" id="gate-svg" viewBox="0 0 340 140" role="group" aria-label="Logic gate with switchable inputs"></svg>
+                <p class="hint">Click the round input switches to change them between 0 and 1.</p>
+              </div>
+              <div class="field"><span class="label">Truth table</span><div class="scroll-x"><table class="t" id="gate-tt"></table></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>For AND, try all four combinations of inputs. How many of them light the output?</li>
+            <li>Compare AND with NAND using the same inputs each time. What do you notice about the two outputs?</li>
+            <li>Set both inputs to 1 and compare OR with XOR. This is the only row where they disagree.</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>AND gives 1 for only one combination: both inputs on. NAND is always the opposite of AND, because it is an AND gate followed by a NOT. The small circle on the NAND and NOR symbols stands for that NOT.</p>
+            <p>OR means "one or the other or both". XOR means "one or the other but not both", so 1 and 1 gives 0.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Truth tables">
+        <header><p class="eyebrow"><b>4.2</b>Explanation</p><h3>Truth tables</h3></header>
+        <div class="prose">
+          <p>A <span class="term">truth table</span> lists every possible combination of inputs and the output each one gives. It is a complete description of a gate or a circuit: if two circuits have the same truth table, they behave identically.</p>
+          <p>The number of rows depends on the number of inputs. Each input can be 0 or 1, so one input needs 2 rows, two inputs need 4 rows and three inputs need 8 rows. In general, <strong>rows = 2<sup>number of inputs</sup></strong>.</p>
+          <p>To make sure no combination is missed, write the inputs in binary counting order: 00, 01, 10, 11. For three inputs count from 000 up to 111.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>All six gates, same inputs</h4></div>
+          <div class="lab-body">
+            <div class="row"><span class="toggle">A <button class="bit" type="button" id="cmp-a" aria-pressed="false" aria-label="Input A">0</button></span><span class="toggle">B <button class="bit" type="button" id="cmp-b" aria-pressed="false" aria-label="Input B">0</button></span><span class="hint">The NOT gate uses input A only.</span></div>
+            <div class="cmp" id="cmp-grid"></div>
+          </div>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Complete a truth table</h4></div>
+          <div class="lab-body">
+            <p>Click each dashed box in the output column to set it to 0 or 1, then check your table.</p>
+            <div class="expr" id="ttf-title"></div>
+            <div class="scroll-x"><table class="t" id="ttf-table"></table></div>
+            <div class="row"><button class="btn primary" type="button" id="ttf-check">Check my table</button><button class="btn" type="button" id="ttf-new">Give me another</button></div>
+            <div class="msg" id="ttf-msg" aria-live="polite"></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Logic circuits">
+        <header><p class="eyebrow"><b>4.3</b>Explanation</p><h3>Logic circuits</h3></header>
+        <div class="prose">
+          <p>One gate cannot do much. Useful behaviour comes from joining gates together so that the output of one becomes the input of another. This is a <span class="term">logic circuit</span>.</p>
+          <p>To work out what a circuit does, go from left to right. Find the output of the first gate, write it on the wire, then use it as an input for the next gate. Carry on until you reach the final output. In a truth table for a circuit, it helps to add a column for each of these in-between wires.</p>
+          <p>A circuit can also be written as a <span class="term">logic expression</span>. Brackets show which part is worked out first, just as in maths. <code>X = A AND (B OR C)</code> means "work out B OR C, then AND the result with A".</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Trace a signal through a circuit</h4></div>
+          <div class="lab-body">
+            <div class="seg" id="cir-seg" role="group" aria-label="Choose a circuit"></div>
+            <p id="cir-story"></p>
+            <div class="expr" id="cir-expr"></div>
+            <div class="scroll-x"><svg class="cir" id="cir-svg" viewBox="0 0 560 220" style="min-width:420px" role="group" aria-label="Logic circuit with switchable inputs"></svg></div>
+            <p class="hint">Wires carrying a 1 are lit. Click the input switches on the left.</p>
+            <div class="field"><span class="label plain">Truth table for this circuit. The lit row matches the switches.</span><div class="scroll-x"><table class="t" id="cir-tt"></table></div></div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>In the seat-belt circuit, find the one combination that sounds the buzzer. Does it match what a real car does?</li>
+            <li>In the security-light circuit, turn A off. Can any setting of B and C light the output?</li>
+            <li>In the half adder, treat A and B as two one-bit numbers. Read the outputs C then S as a two-bit binary number. What is the circuit calculating?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>The buzzer sounds only when the engine is on and the belt is not fastened.</p>
+            <p>With A off the final AND gate can never output 1, whatever B and C do. A acts as a master switch.</p>
+            <p>The half adder adds the two bits. 1 + 1 gives C = 1 and S = 0, which is binary 10, or 2. This small circuit is the starting point for the part of the CPU that does arithmetic.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Challenge">
+        <header><p class="eyebrow"><b>4.4</b>Challenge</p><h3>Predict the output</h3></header>
+        <div class="prose"><p>Try to answer from memory. If you get stuck, sketch the truth table.</p></div>
+        <div class="lab challenge">
+          <div class="lab-head"><span class="tag">Challenge</span><h4>Gates and expressions</h4></div>
+          <div class="lab-body"><div class="quiz" id="quiz-logic"></div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <div class="topic-foot"><a class="btn" href="#errors" data-go="errors">Back: Error Checking</a><a class="btn primary" href="#cpu" data-go="cpu">Next: Computer Architecture</a></div>
+</section>
+
+<!-- ======================= 5 COMPUTER ARCHITECTURE ======================= -->
+<section class="view topic" data-view="cpu" hidden>
+  <div class="topic-head">
+    <p class="eyebrow">Topic 5 of 5</p>
+    <h2>Computer Architecture</h2>
+    <p class="lede">A program is a list of very small instructions. The processor carries them out one at a time, billions of times a second, by repeating the same three stages over and over.</p>
+  </div>
+  <div class="topic-body">
+    <nav class="outline" aria-label="Lessons in this topic"></nav>
+    <div class="lessons">
+
+      <article class="lesson" data-short="Stored programs">
+        <header><p class="eyebrow"><b>5.1</b>Concept</p><h3>The stored program computer</h3></header>
+        <div class="prose">
+          <p>Almost every computer you use follows a design described by John von Neumann in 1945. Its key idea is the <span class="term">stored program concept</span>: the instructions of a program are kept in the same memory as the data they work on, and both are stored as binary numbers.</p>
+          <p>The design has two main parts. The <span class="term">central processing unit</span> (CPU) carries out instructions. <span class="term">Memory</span> (RAM) holds the instructions and data the CPU is using right now. Memory is a long row of storage locations. Each location has an <span class="term">address</span>, which is its position number, and <span class="term">contents</span>, which is the binary value stored there.</p>
+          <p>The CPU and memory are joined by sets of wires called <span class="term">buses</span>. The address bus carries the address the CPU wants to use. The data bus carries the value being moved. The control bus carries signals such as "read" and "write".</p>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Inside the CPU">
+        <header><p class="eyebrow"><b>5.2</b>Explanation</p><h3>Inside the CPU</h3></header>
+        <div class="prose">
+          <p>The CPU has three kinds of component. The <span class="term">control unit</span> (CU) is the manager. It works out what each instruction means and sends signals telling the other parts what to do. The <span class="term">arithmetic logic unit</span> (ALU) does the calculations and comparisons. It is built from logic gates like the ones in Topic 4.</p>
+          <p><span class="term">Registers</span> are very small, very fast stores inside the CPU. Each holds one value and has one job. Five of them matter here: the PC, MAR, MDR, CIR and ACC.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Click a component to see its job</h4></div>
+          <div class="lab-body">
+            <div class="parts">
+              <div class="parts-map" id="parts-grid">
+                <div class="box"><span>CPU</span>
+                  <button class="part" type="button" data-part="CU">Control Unit</button>
+                  <button class="part" type="button" data-part="ALU">ALU</button>
+                  <div class="regrid">
+                    <button class="part" type="button" data-part="PC">PC</button>
+                    <button class="part" type="button" data-part="MAR">MAR</button>
+                    <button class="part" type="button" data-part="MDR">MDR</button>
+                    <button class="part" type="button" data-part="CIR">CIR</button>
+                    <button class="part" type="button" data-part="ACC">ACC</button>
+                  </div>
+                </div>
+                <div class="box"><span>Buses</span>
+                  <button class="part" type="button" data-part="ABUS">Address bus</button>
+                  <button class="part" type="button" data-part="DBUS">Data bus</button>
+                  <button class="part" type="button" data-part="CBUS">Control bus</button>
+                </div>
+                <div class="box"><span>Memory</span>
+                  <button class="part" type="button" data-part="RAM">RAM</button>
+                  <button class="part" type="button" data-part="ROM">ROM</button>
+                </div>
+              </div>
+              <div class="parts-info" id="parts-info" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Fetch, decode, execute">
+        <header><p class="eyebrow"><b>5.3</b>Explanation</p><h3>The fetch–decode–execute cycle</h3></header>
+        <div class="prose">
+          <p>The CPU handles every instruction in the same three stages.</p>
+          <ol>
+            <li><strong>Fetch.</strong> The address in the PC is copied to the MAR. The instruction stored at that address travels along the data bus into the MDR, then is copied into the CIR. The PC goes up by 1 so that it points at the next instruction.</li>
+            <li><strong>Decode.</strong> The control unit splits the instruction in the CIR into two parts. The <span class="term">opcode</span> says what to do. The <span class="term">operand</span> says which memory address to do it with.</li>
+            <li><strong>Execute.</strong> The instruction is carried out. That might mean loading a value from memory, doing a calculation in the ALU, storing a result or jumping to a different instruction.</li>
+          </ol>
+          <p>Then the cycle starts again with the next instruction. A CPU with a clock speed of 3 GHz runs about three billion of these cycles each second.</p>
+          <p>The model computer below is tiny on purpose. It has 16 memory locations and each one holds a single byte. In an instruction, the left nibble is the opcode and the right nibble is the operand. Press <strong>Step</strong> to perform one small move at a time and read what happened.</p>
+        </div>
+        <div class="lab">
+          <div class="lab-head"><span class="tag">Try it</span><h4>Step through a running program</h4></div>
+          <div class="lab-body">
+            <div class="fde">
+              <div class="fde-controls">
+                <label class="label" for="fde-prog">Program</label>
+                <select id="fde-prog"></select>
+                <button class="btn primary" type="button" id="fde-step">Step</button>
+                <button class="btn" type="button" id="fde-run">Run</button>
+                <button class="btn" type="button" id="fde-reset">Reset</button>
+                <div class="seg" id="fde-speed" role="group" aria-label="Run speed"><button type="button" data-v="1300" aria-pressed="false">Slow</button><button type="button" data-v="650" aria-pressed="true">Medium</button><button type="button" data-v="160" aria-pressed="false">Fast</button></div>
+              </div>
+              <p class="hint" id="fde-desc"></p>
+              <div class="stages" id="fde-stages"><span class="st" data-stage="fetch">Fetch</span><span class="arrow" aria-hidden="true">→</span><span class="st" data-stage="decode">Decode</span><span class="arrow" aria-hidden="true">→</span><span class="st" data-stage="execute">Execute</span><span class="cycle" id="fde-cycle"></span></div>
+              <div class="say" id="fde-say" aria-live="polite"></div>
+              <div class="machine">
+                <div class="left">
+                <div class="cpu"><span>CPU</span>
+                  <div class="unit" id="u-cu"><b>Control Unit</b><span id="cu-text"></span></div>
+                  <div class="unit" id="u-alu"><b>ALU</b><span id="alu-text"></span></div>
+                  <div class="regs">
+                    <div class="reg" id="r-pc"><span class="name">PC</span><span class="bin"></span><span class="den"></span></div>
+                    <div class="reg" id="r-mar"><span class="name">MAR</span><span class="bin"></span><span class="den"></span></div>
+                    <div class="reg" id="r-mdr"><span class="name">MDR</span><span class="bin"></span><span class="den"></span></div>
+                    <div class="reg" id="r-cir"><span class="name">CIR</span><span class="bin"></span><span class="den"></span><span class="extra"></span></div>
+                    <div class="reg" id="r-acc"><span class="name">ACC</span><span class="bin"></span><span class="den"></span></div>
+                  </div>
+                </div>
+                <div class="field"><span class="label">Output</span><div class="outbox" id="fde-output"></div></div>
+                </div>
+                <div class="buses">
+                  <div class="bus" id="bus-addr">Address bus<b></b></div>
+                  <div class="bus" id="bus-data">Data bus<b></b></div>
+                  <div class="bus" id="bus-ctrl">Control bus<b></b></div>
+                </div>
+                <div class="ram"><span>Memory (RAM)</span>
+                  <table><thead><tr><th>Addr</th><th>Contents</th><th>Meaning</th></tr></thead><tbody id="ram-body"></tbody></table>
+                </div>
+              </div>
+              <div class="field"><span class="label">Instruction set of this model computer</span><div class="scroll-x"><table class="t" id="op-table"></table></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="experiment">
+          <span class="tag">Experiment</span>
+          <ol>
+            <li>Step through the whole of <em>Add two numbers</em>. Which register changes during every fetch, whatever the instruction is?</li>
+            <li>Press Reset. The data in the Meaning column can be edited: change the numbers at addresses 8 and 9, predict the output, then run the program.</li>
+            <li>Load <em>Count down to zero</em> and run it. The PC normally goes up by 1. Find the moments when it does something else.</li>
+            <li>In the add program, set the two numbers to 200 and 100. What is the output, and why is it not 300?</li>
+          </ol>
+          <details><summary>Check your thinking</summary><div>
+            <p>The PC, MAR, MDR and CIR change during every fetch. The fetch stage is identical for every instruction. Only the execute stage differs.</p>
+            <p>A jump or branch instruction writes a new address into the PC. That is how a program repeats a section of code (a loop) or chooses between two paths.</p>
+            <p>The accumulator holds 8 bits, so its largest value is 255. 300 does not fit, and the result wraps round to 300 − 256 = 44. This is overflow, the same effect you saw in Topic 1.</p>
+          </div></details>
+        </div>
+      </article>
+
+      <article class="lesson" data-short="Challenge">
+        <header><p class="eyebrow"><b>5.4</b>Challenge</p><h3>Think like the control unit</h3></header>
+        <div class="prose"><p>Some questions ask what a component does. Others ask you to decode an instruction or trace a short program by hand. The instruction set table above will help.</p></div>
+        <div class="lab challenge">
+          <div class="lab-head"><span class="tag">Challenge</span><h4>CPU and the cycle</h4></div>
+          <div class="lab-body"><div class="quiz" id="quiz-cpu"></div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <div class="topic-foot"><a class="btn" href="#logic" data-go="logic">Back: Logic Gates</a><a class="btn primary" href="#start" data-go="start">Back to start</a></div>
+</section>
+
+</main>
+<footer>Bit by Bit covers five Year 9 Computer Science topics. Challenge progress is remembered in this browser only.</footer>
+
+<script src="js/core.js"></script>
+<script src="js/numbers.js"></script>
+<script src="js/data.js"></script>
+<script src="js/errors.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/cpu.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
