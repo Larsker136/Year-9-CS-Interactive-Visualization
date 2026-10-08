@@ -2,7 +2,7 @@
 
 An interactive learning website for Year 9 Computer Science.
 
-The website is available at [y9cslab.skylarp520.workers.dev] (y9cslab.skylarp520.workers.dev).
+The website is available at [y9cslab.skylarp520.workers.dev](https://y9cslab.skylarp520.workers.dev).
 ## Purpose
 
 This was built to teach Year 9 students and to make core Computer Science concepts easier to understand. Each idea comes with a working model students can change, so they can see the result for themselves.
